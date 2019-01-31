@@ -13,21 +13,8 @@ buttons.forEach((button) => {
         let playerSelection = button.id;
         let compSelection = compSelect();
         playRound(playerSelection, compSelection);
-        rounds.textContent = `Lifes: ${lifes}`;
-        win.textContent = `Wins: ${wins}`;
-        lose.textContent = `Loses: ${loses}`;
-        if (lifes === 0) {
-            if (wins > loses) {
-                outcome.textContent = 'Congratulations, you won the match!';
-            } else if (loses > wins) {
-                outcome.textContent = 'You have lost the match!';
-            } else {
-                outcome.textContent = 'The match was drawn!';
-            }
-            lifes = 5;
-            wins = 0;
-            loses = 0;
-        }
+        setRoundTexts();
+        checkPlayerLife();
     });
   });
 
@@ -87,4 +74,25 @@ function playRound(pMove, cMove) {
 
     return;
     
+}
+
+function setRoundTexts() {
+    rounds.textContent = `Lifes: ${lifes}`;
+    win.textContent = `Wins: ${wins}`;
+    lose.textContent = `Loses: ${loses}`;
+}
+
+function checkPlayerLife() {
+    if (lifes === 0) {
+        if (wins > loses) {
+            outcome.textContent = 'Congratulations, you won the match!';
+        } else if (loses > wins) {
+            outcome.textContent = 'You have lost the match!';
+        } else {
+            outcome.textContent = 'The match was drawn!';
+        }
+        lifes = 5;
+        wins = 0;
+        loses = 0;
+    }
 }
